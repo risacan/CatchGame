@@ -11,9 +11,9 @@ public class HatController : MonoBehaviour {
 	void Start () {
 		position = transform.position;
 		rb2D = GetComponent<Rigidbody2D>();
-	    if (cam == null)	{
-		    cam = Camera.main;
-	  }
+		if (cam == null) {
+			cam = Camera.main;
+		}
 	}
 	
 	// Update is called once per physics timestep

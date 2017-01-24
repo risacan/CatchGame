@@ -9,11 +9,11 @@ public class HatController : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		position = transform.position;
-		rb2D = GetComponent<Rigidbody2D>();
 		if (cam == null) {
 			cam = Camera.main;
 		}
+		position = transform.position;
+		rb2D = GetComponent<Rigidbody2D>();
 	}
 	
 	// Update is called once per physics timestep

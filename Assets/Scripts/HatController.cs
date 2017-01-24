@@ -6,6 +6,7 @@ public class HatController : MonoBehaviour {
 	public Camera cam;
 	public Rigidbody2D rb2D;
 	public Vector3 position;
+	public Renderer rend;
 	private float maxWidth;
 
 	// Use this for initialization
@@ -17,7 +18,9 @@ public class HatController : MonoBehaviour {
 		rb2D = GetComponent<Rigidbody2D>();
 		Vector3 upperCorner = new Vector3 (Screen.width, Screen.height, 0.0f);
 		Vector3 targetWidth = cam.ScreenToWorldPoint (upperCorner);
-		maxWidth = targetWidth.x;
+		rend = GetComponent<Renderer>();
+		float hatWidth = rend.bounds.extents.x;
+		maxWidth = targetWidth.x - hatWidth/2;
 	}
 	
 	// Update is called once per physics timestep

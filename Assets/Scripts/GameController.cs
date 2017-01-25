@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameController : MonoBehaviour {
 
@@ -8,6 +9,7 @@ public class GameController : MonoBehaviour {
 	public Renderer rend;
 	public GameObject ball;
 	public float timeLeft;
+	public Text timerText;
 	private float maxWidth;
 
 	// Use this for initialization
@@ -26,8 +28,9 @@ public class GameController : MonoBehaviour {
 	
 	void FixedUpdate () {
 		timeLeft -= Time.deltaTime;
+		timerText.text = "Time Left: \n" + Mathf.RoundToInt (timeLeft);
 	}
-	
+
 	// Update is called once per frame
 	IEnumerator Spawn () {
 		yield return new WaitForSeconds (2.0f);

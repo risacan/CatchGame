@@ -7,6 +7,7 @@ public class GameController : MonoBehaviour {
 	public Camera cam;
 	public Renderer rend;
 	public GameObject ball;
+	public float timeLeft;
 	private float maxWidth;
 
 	// Use this for initialization
@@ -23,10 +24,14 @@ public class GameController : MonoBehaviour {
 		StartCoroutine (Spawn ());
 	}
 	
+	void FixedUpdate () {
+		timeLeft -= Time.deltaTime;
+	}
+	
 	// Update is called once per frame
 	IEnumerator Spawn () {
 		yield return new WaitForSeconds (2.0f);
-		while (true) {
+		while (timeLeft > 0) {
 			Vector3 spawnPosition = new Vector3 (
 				Random.Range (-maxWidth, maxWidth), // maxWidthの間でランダム
 				transform.position.y,

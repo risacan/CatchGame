@@ -23,7 +23,7 @@ public class GameController : MonoBehaviour {
 		float ballWidth = ball.GetComponent<Renderer>().bounds.extents.x;
 		maxWidth = targetWidth.x - ballWidth;
 		StartCoroutine (Spawn ());
-		timerText.text = "Time Left: \n" + Mathf.RoundToInt (timeLeft);
+		UpdateText();
 	}
 	
 	void FixedUpdate () {
@@ -31,7 +31,7 @@ public class GameController : MonoBehaviour {
 		if (timeLeft < 0) {
 			timeLeft = 0;
 		}
-		timerText.text = "Time Left: \n" + Mathf.RoundToInt (timeLeft);
+		UpdateText();
 	}
 
 	// Update is called once per frame
@@ -47,5 +47,9 @@ public class GameController : MonoBehaviour {
 			Instantiate (ball, spawnPosition, spawnRotation);
 			yield return new WaitForSeconds (Random.Range (1.0f, 2.0f));
 		}
+	}
+	
+	void UpdateText () {
+		timerText.text = "Time Left:\n" + Mathf.RoundToInt (timeLeft);
 	}
 }

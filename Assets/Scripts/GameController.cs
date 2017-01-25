@@ -20,7 +20,6 @@ public class GameController : MonoBehaviour {
 		Vector3 upperCorner = new Vector3 (Screen.width, Screen.height, 0.0f);
 		Vector3 targetWidth = cam.ScreenToWorldPoint (upperCorner);
 		rend = GetComponent<Renderer>();
-//		float ballWidth = ball.rend.bounds.extents.x;
 		float ballWidth = ball.GetComponent<Renderer>().bounds.extents.x;
 		maxWidth = targetWidth.x - ballWidth;
 		StartCoroutine (Spawn ());
@@ -48,5 +47,4 @@ public class GameController : MonoBehaviour {
 			yield return new WaitForSeconds (Random.Range (1.0f, 2.0f));
 		}
 	}
-
 }

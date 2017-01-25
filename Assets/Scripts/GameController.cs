@@ -23,6 +23,7 @@ public class GameController : MonoBehaviour {
 		float ballWidth = ball.GetComponent<Renderer>().bounds.extents.x;
 		maxWidth = targetWidth.x - ballWidth;
 		StartCoroutine (Spawn ());
+		timerText.text = "Time Left: \n" + Mathf.RoundToInt (timeLeft);
 	}
 	
 	void FixedUpdate () {

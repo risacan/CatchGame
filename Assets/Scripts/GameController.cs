@@ -28,6 +28,9 @@ public class GameController : MonoBehaviour {
 	
 	void FixedUpdate () {
 		timeLeft -= Time.deltaTime;
+		if (timeLeft < 0) {
+			timeLeft = 0;
+		}
 		timerText.text = "Time Left: \n" + Mathf.RoundToInt (timeLeft);
 	}
 
@@ -45,4 +48,5 @@ public class GameController : MonoBehaviour {
 			yield return new WaitForSeconds (Random.Range (1.0f, 2.0f));
 		}
 	}
+
 }

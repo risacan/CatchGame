@@ -12,32 +12,43 @@ public class GameController : MonoBehaviour {
 	public Text timerText;
 	public GameObject gameOverText;
 	public GameObject restartButton;
+	public GameObject startButton;
 	private float maxWidth;
+	private bool playing;
 
 	// Use this for initialization
 	void Start () {
 		if (cam == null) {
 			cam = Camera.main;
 		}
+		playing = false;
 		Vector3 upperCorner = new Vector3 (Screen.width, Screen.height, 0.0f);
 		Vector3 targetWidth = cam.ScreenToWorldPoint (upperCorner);
 		rend = GetComponent<Renderer>();
 		float ballWidth = ball.GetComponent<Renderer>().bounds.extents.x;
 		maxWidth = targetWidth.x - ballWidth;
-		StartCoroutine (Spawn ());
 		UpdateText();
 	}
 	
 	void FixedUpdate () {
-		timeLeft -= Time.deltaTime;
-		if (timeLeft < 0) {
-			timeLeft = 0;
+		if (playing) {
+			timeLeft -= Time.deltaTime;
+			if (timeLeft < 0) {
+				timeLeft = 0;
+			}
+			UpdateText();
 		}
-		UpdateText();
+	}
+
+	public void StartGame () {
+		startButton.SetActive (false);
+		StartCoroutine (Spawn ());
 	}
 
 	// Update is called once per frame
 	IEnumerator Spawn () {
+		yield return new WaitForSeconds (1.0f);
+		playing = true;
 		yield return new WaitForSeconds (2.0f);
 		while (timeLeft > 0) {
 			Vector3 spawnPosition = new Vector3 (

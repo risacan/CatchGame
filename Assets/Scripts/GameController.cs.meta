@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 4d9f849de02ac4b59b49a21d5480fb15
+timeCreated: 1485315100
+licenseType: Free
+MonoImporter:
+  serializedVersion: 2
+  defaultReferences:
+  - cam: {instanceID: 0}
+  - rend: {instanceID: 0}
+  - ball: {fileID: 1065171967713382, guid: 87cc433ad9b4e4a1fab6152a863511cc, type: 2}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

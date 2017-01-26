@@ -48,6 +48,7 @@ public class GameController : MonoBehaviour {
 	// Update is called once per frame
 	IEnumerator Spawn () {
 		playing = true;
+		yield return new WaitForSeconds (1.0f);
 		while (timeLeft > 0) {
 			Vector3 spawnPosition = new Vector3 (
 				Random.Range (-maxWidth, maxWidth), // maxWidthの間でランダム

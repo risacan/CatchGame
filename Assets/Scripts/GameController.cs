@@ -54,8 +54,16 @@ public class GameController : MonoBehaviour {
 				transform.position.y,
 				0.0f
 			);
+
+			Vector3 gravitySample = new Vector3 (
+				0.0f, 
+				-200.0f,
+				0.0f
+			);
 			Quaternion spawnRotation = Quaternion.identity;
-			Instantiate (ball, spawnPosition, spawnRotation);
+			GameObject b =
+			  GameObject.Instantiate (ball, spawnPosition, spawnRotation) as GameObject;
+			b.transform.GetComponent<Rigidbody2D>().AddForce(gravitySample);
 			yield return new WaitForSeconds (Random.Range (1.0f, 2.0f));
 		}
 		yield return new WaitForSeconds (2.0f);

@@ -47,17 +47,24 @@ public class GameController : MonoBehaviour {
 
 	// Update is called once per frame
 	IEnumerator Spawn () {
-		yield return new WaitForSeconds (1.0f);
 		playing = true;
-		yield return new WaitForSeconds (2.0f);
+		yield return new WaitForSeconds (1.0f);
 		while (timeLeft > 0) {
 			Vector3 spawnPosition = new Vector3 (
 				Random.Range (-maxWidth, maxWidth), // maxWidthの間でランダム
 				transform.position.y,
 				0.0f
 			);
+
+			Vector3 gravitySample = new Vector3 (
+				0.0f, 
+				Random.value < 0.4f ? -1000.0f : 0.0f,
+				0.0f
+			);
 			Quaternion spawnRotation = Quaternion.identity;
-			Instantiate (ball, spawnPosition, spawnRotation);
+			GameObject b =
+			  GameObject.Instantiate (ball, spawnPosition, spawnRotation) as GameObject;
+			b.transform.GetComponent<Rigidbody2D>().AddForce(gravitySample);
 			yield return new WaitForSeconds (Random.Range (1.0f, 2.0f));
 		}
 		yield return new WaitForSeconds (2.0f);

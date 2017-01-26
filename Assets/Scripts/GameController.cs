@@ -15,8 +15,6 @@ public class GameController : MonoBehaviour {
 	public GameObject startButton;
 	private float maxWidth;
 	private bool playing;
-	private float minPower;
-	private float maxPower;
 
 	// Use this for initialization
 	void Start () {
@@ -29,8 +27,6 @@ public class GameController : MonoBehaviour {
 		rend = GetComponent<Renderer>();
 		float ballWidth = ball.GetComponent<Renderer>().bounds.extents.x;
 		maxWidth = targetWidth.x - ballWidth;
-		minPower = -1.0f;
-		maxPower = -1000.0f;
 		UpdateText();
 	}
 	
@@ -61,7 +57,7 @@ public class GameController : MonoBehaviour {
 
 			Vector3 gravitySample = new Vector3 (
 				0.0f, 
-				Random.Range (minPower, maxPower),
+				Random.value < 0.4f ? -1000.0f : 0.0f,
 				0.0f
 			);
 			Quaternion spawnRotation = Quaternion.identity;

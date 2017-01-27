@@ -16,11 +16,21 @@ public class Score : MonoBehaviour {
 	}
 	
 	void UpdateScore () {
+		if (score < 0) {
+			score = 0;
+		}
 		scoreText.text = "Score: \n" + score;
 	}
 
-	void OnTriggerEnter2D () {
-		score  += ballValue;
+	void OnTriggerEnter2D (Collider2D coll) {
+		switch (coll.gameObject.tag) {
+			case "bomb":
+			  score -= ballValue;
+			  break;
+			case "ball":
+			  score += ballValue;
+			  break;
+		}
 		UpdateScore();
 	}
 }

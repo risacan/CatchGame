@@ -7,12 +7,12 @@ public class GameController : MonoBehaviour {
 
 	public Camera cam;
 	public Renderer rend;
-	public GameObject ball;
 	public float timeLeft;
 	public Text timerText;
 	public GameObject gameOverText;
 	public GameObject restartButton;
 	public GameObject startButton;
+	public GameObject[] balls;
 	private float maxWidth;
 	private bool playing;
 
@@ -25,7 +25,7 @@ public class GameController : MonoBehaviour {
 		Vector3 upperCorner = new Vector3 (Screen.width, Screen.height, 0.0f);
 		Vector3 targetWidth = cam.ScreenToWorldPoint (upperCorner);
 		rend = GetComponent<Renderer>();
-		float ballWidth = ball.GetComponent<Renderer>().bounds.extents.x;
+		float ballWidth = balls[0].GetComponent<Renderer>().bounds.extents.x;
 		maxWidth = targetWidth.x - ballWidth;
 		UpdateText();
 	}
@@ -50,6 +50,7 @@ public class GameController : MonoBehaviour {
 		playing = true;
 		yield return new WaitForSeconds (1.0f);
 		while (timeLeft > 0) {
+			GameObject ball = balls[Random.Range (0, balls.Length)];
 			Vector3 spawnPosition = new Vector3 (
 				Random.Range (-maxWidth, maxWidth), // maxWidthの間でランダム
 				transform.position.y,
